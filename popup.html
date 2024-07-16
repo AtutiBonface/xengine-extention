@@ -11,13 +11,24 @@
         <img src="/images/xe-128.png" alt="">
         <h1>BlackJuice Extension</h1>
     </div>
-    <div class="container">      
-        
-        <ul id="videoList" class="video-list">
-            <!-- Video items will be dynamically inserted here  na pia delete from here using clearBtn -->
+    <div class="app-not-opened" id="xengine-closed">
+        <h5>Companion App is inactive</h5>
+
+        <h4>Please make sure BlackJuice is runnning in your device and is of version 1.2 or higher.</h4>
+
+        <p>I don't have Blue Juice?</p>
+
+        <button id="downloadApp">Download BlackJuice</button>
+    </div>
+    <div class="app-opened" id="xengine-opened">       
+        <div class="container">      
             
-        </ul>
-        <button id="clearButton" class="clear-button">Clear List</button>
+            <ul id="videoList" class="video-list">
+                <!-- Video items will be dynamically inserted here  na pia delete from here using clearBtn -->
+                
+            </ul>
+            <button id="clearButton" class="clear-button">Clear List</button>
+        </div>
     </div>
     <script src="popup.js"></script>
 </body>

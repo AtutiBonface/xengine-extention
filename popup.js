@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch the video list from storage when popup opens
     chrome.storage.local.get({updateVideoList : []}, function(result) {
         if (result.updateVideoList) {
+            
             populateVideoList(result.updateVideoList);
         }else{
             console.log("No data")

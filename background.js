@@ -16,12 +16,10 @@ chrome.contextMenus.onClicked.addListener((data, tab)=>{
 })
 chrome.runtime.onMessage.addListener((message, sender, sendResponse)=>{
   if(message.action === "clearVideoList"){
-    chrome.storage.local.clear(()=>{
-      if(chrome.runtime.lastError){
-        console.log('Error is', chrome.runtime.lastError)
-      }else{
-        console.log("deleted successfully")
-      }
+    chrome.storage.local.set({updateVideoList : []},()=>{
+     
+      chrome.action.setBadgeText({text : ""})
+       
     })
   }else if(message.action === "initiateDownload"){
     handle_websockets(message.data)
@@ -66,11 +64,19 @@ chrome.webRequest.onBeforeRequest.addListener(
 
             Data.size = filesize
  
-            video_list.push(Data)
+            video_list.push(Data)           
 
             chrome.storage.local.set({updateVideoList : video_list}, function() {
               console.log('Items appended successfully');
           });
+          
+          if(video_list.length > 0){
+            console.log(`${video_list.length}`)
+            chrome.action.setBadgeText({ text : `${video_list.length}`})
+          }else{
+            chrome.action.setBadgeText({text : ""})
+          }
+          
           }).catch((err)=>{
             console.log(err)
           })
@@ -84,7 +90,6 @@ chrome.webRequest.onBeforeRequest.addListener(
 ["requestBody"]
 );
 const check_connection = ()=>{
-  let icon_displayed = '/images/xe-128.png'
   let new_socket = new WebSocket('ws://127.0.0.1:65432');
 
     console.log('Attempting to establish connection')
@@ -141,4 +146,3 @@ const returnFileSizeWithUnits = (filesize)=>{
     return `${size} bytes`;
   }
 }
-//chrome.action.setBadgeText({ text: "" });

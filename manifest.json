@@ -1,0 +1,42 @@
+{
+    "version" : "1.1",
+    "description": "This is open source",
+    "manifest_version": 3,
+    "icons": {
+        "16": "/images/xe-16.png",
+        "48": "/images/xe-48.png",
+        "128": "/images/xe-128.png"
+    },
+    "action" : {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "/images/xe-16.png",
+            "48": "/images/xe-48.png",
+            "128": "/images/xe-128.png"
+        }
+    },
+    "background" : {
+        "service_worker": "background.js"
+    },
+    "name": "Black juice 2",
+    "permissions" :[
+        "activeTab",
+        "contextMenus",
+        "scripting",
+        "webRequest",
+        "storage"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "content_scripts":[
+        {
+            "js": ["content.js"],
+            "matches": ["<all_urls>"],
+            "css": ["content.css"],
+            "all_frames": true
+
+        } 
+    ]
+
+}

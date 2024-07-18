@@ -19,9 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 xe_closed_data.classList.add('none')
                 xe_open_data.classList.remove("none")
             }else if(result.isxengineOpened === false){
+                chrome.runtime.sendMessage({action: 'clearVideoList'});
                 xe_closed_data.classList.remove('none')
                 xe_open_data.classList.add("none")
             }else{
+                chrome.runtime.sendMessage({action: 'clearVideoList'});
+                xe_closed_data.classList.remove('none')
+                xe_open_data.classList.add("none")
                 dynamic_content_fn()
             }
         })

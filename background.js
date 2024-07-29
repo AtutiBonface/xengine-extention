@@ -14,9 +14,14 @@ class SimpleMediaInterceptor {
             path: this.isDownloaderActive ? "/images/xe-128.png" : "/images/w-xe-128.png"
         });
         if (this.isDownloaderActive) {
+            this.setBadgedefaultText()
             this.startIntersepting()
             
         }
+    }
+    async setBadgedefaultText(){
+      const stored_files = await this.getStoredFiles()
+      chrome.action.setBadgeText({ text: stored_files.length > 0 ? stored_files.length.toString() : "" });
     }
   
     startContextMenus(){  
@@ -87,6 +92,7 @@ class SimpleMediaInterceptor {
       new_socket.onerror = (error)=>{
         this.isDownloaderActive = false
         chrome.storage.local.set({isxengineOpened : false})
+        this.clearVideoList()
 
         this.startApp()
       }

@@ -49,13 +49,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function clearVideoList() {
-        // Clear the list in the UI
+       
         videoList.innerHTML = '';
-        // Send message to background script to clear the stored list
+        
         chrome.runtime.sendMessage({action: 'clearVideoList'});
     }
 
-    // Fetch the video list from storage when popup opens
+    
     chrome.storage.local.get({updateVideoList : []}, function(result) {
         if (result.updateVideoList) {
             
@@ -67,13 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     clearButton.addEventListener('click', clearVideoList);
 
-    // Listen for updates to the video list
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-        if (message.action === 'updateVideoList') {
-            console.log("There is a video")
-            populateVideoList(message.videos);
-
-            sendResponse({received: "Thanks"})
-        }
-    });
+    
+    
 });

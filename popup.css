@@ -1,5 +1,5 @@
 html,body {
-    width: 300px;
+    width: 350px;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -41,8 +41,8 @@ html,body {
     font-size: 11px;
 }
 .app-opened{
-    width: 300px;
-    height: 350px;
+    width: 350px;
+    height: 400px;
     background-color: transparent;
 }
 

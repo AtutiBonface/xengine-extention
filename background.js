@@ -15,8 +15,7 @@ class SimpleMediaInterceptor {
         });
         if (this.isDownloaderActive) {
             this.setBadgedefaultText()
-            this.startIntersepting()
-            
+            this.startIntersepting()  
         }
     }
     async setBadgedefaultText(){
@@ -150,6 +149,19 @@ class SimpleMediaInterceptor {
         });
     }
 
+    async returnFineFilename(filename, extension){
+      if (filename != extension){
+        return new Promise((resolve)=>{
+          chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            const activeTab = tabs[0]
+            resolve(`${activeTab.title}.${extension}`)
+          })
+        })
+      }  
+      return filename
+      
+    }
+
     async storeFileData(details){
         const link = details.url
 
@@ -158,12 +170,17 @@ class SimpleMediaInterceptor {
         const pathname = object_url.pathname
         let undecoded_filename = pathname.split('/').pop()
 
-        const filename = decodeURIComponent(undecoded_filename)
+        let filename = decodeURIComponent(undecoded_filename)
+
+        const extension = filename.split('.').pop()
+
+
+        filename = await this.returnFineFilename(filename, extension)
 
         
         const existingFiles = await this.getStoredFiles();
 
-        if (existingFiles.some(file => file.name === filename || file.link === link)) {
+        if (existingFiles.some(file => file.link === link)) {
             return;
         }
 

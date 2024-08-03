@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chrome.tabs.query({active : true, currentWindow : true}, (tabs)=>{
             const current_tabid = tabs[0].id
 
-            chrome.tabs.update(current_tabid, {url : "https://blackjuce.imaginekenya.site"})
+            chrome.tabs.update(current_tabid, {url : "https://blackjuice.imaginekenya.site"})
         })
     })
 

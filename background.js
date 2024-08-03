@@ -8,6 +8,24 @@ class SimpleMediaInterceptor {
         this.mediaExtensions = ['.mp3', '.mp4', '.avi', '.mov', '.webm', '.ogg'];
     }
 
+    takeOverBrowserDownloads(){
+      chrome.downloads.onCreated.addListener((downloadItem) => {
+        const url = downloadItem.url;      
+        // Skip blob URLs
+        if (url.startsWith("blob:")) {
+          return;
+        }else{
+          let f_name = new URL(downloadItem.url)
+          let path_name = f_name.pathname.split('/').pop()
+          let new_filename = decodeURIComponent(path_name)
+          this.sendDataToDownloader({link : url, name : new_filename})
+        }
+
+        chrome.downloads.cancel(downloadItem.id);
+
+      })
+    }
+
 
     startApp(){
         chrome.action.setIcon({
@@ -15,7 +33,8 @@ class SimpleMediaInterceptor {
         });
         if (this.isDownloaderActive) {
             this.setBadgedefaultText()
-            this.startIntersepting()  
+            this.startIntersepting() 
+            this.takeOverBrowserDownloads() 
         }
     }
     async setBadgedefaultText(){
@@ -31,6 +50,8 @@ class SimpleMediaInterceptor {
             contexts : ["image", "audio", "video"]
         })
       })
+
+    
     
     
     
@@ -246,6 +267,7 @@ class SimpleMediaInterceptor {
   const interceptor = new SimpleMediaInterceptor();
   
   interceptor.checkDownloaderActive()
+  
   interceptor.listenOnMessages()
   interceptor.startContextMenus()
   

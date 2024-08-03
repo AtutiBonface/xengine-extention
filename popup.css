@@ -12,11 +12,11 @@ html,body {
 
 }
 .app-not-opened h5, h4{
-    color: rgb(189, 189, 189);
+    color: white;
 }
 .app-not-opened h5{
-    font-weight: 300;
-    font-size: 12px;
+    font-weight: 400;
+    font-size: 13px;
 }
 .app-not-opened button{
     text-decoration: none;
@@ -37,7 +37,7 @@ html,body {
 
 }
 .app-not-opened p{
-    color: rgb(180, 180, 180);
+    color: gray;
     font-size: 11px;
 }
 .app-opened{

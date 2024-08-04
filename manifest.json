@@ -1,6 +1,6 @@
 {
     "version" : "1.5",
-    "description": "This is open source",
+    "description": "BlackJuice Downloader",
     "manifest_version": 3,
     "icons": {
         "16": "/images/xe-16.png",

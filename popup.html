@@ -12,22 +12,36 @@
         <h1>BlackJuice Extension v1.5</h1>
     </div>
     <div class="app-not-opened" id="xengine-closed">
-        <h5>Companion App is inactive</h5>
+        <div class="inner-container">
+            <h5 class="warning">App Not Running</h5>
 
-        <h4>Please make sure BlackJuice is runnning in your device and is of version 1.5 or higher.</h4>
+            <h5 class="primary">Please start the BlackJuice app</h5>
 
-        <p>I don't have BlackJuice?</p>
+            <p>Make sure you're using BlackJuice version 1.5 or newer for the best experience.</p>
 
-        <button id="downloadApp">Download BlackJuice</button>
+            <p>Don't have BlackJuice yet?</p>
+
+            <button id="downloadApp">Download BlackJuice</button>
+            <h5 class="primary">Key Features:</h5>
+            <ul>
+                <li>Seamless video downloading</li>
+                <li>Lightning-fast processing</li>
+                <li>Secure and private</li>
+            </ul>
+
+        </div>     
+           
+       
     </div>
     <div class="app-opened" id="xengine-opened">       
-        <div class="container">      
+        <div class="container">   
             
             <ul id="videoList" class="video-list">
                 <!-- Video items will be dynamically inserted here  na pia delete from here using clearBtn -->
+                 
                 
             </ul>
-            <button id="clearButton" class="clear-button">Clear List</button>
+            <button id="clearButton" class="clear-button">Clear list</button>
         </div>
     </div>
     <script src="popup.js"></script>
